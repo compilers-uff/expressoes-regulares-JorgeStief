@@ -1,4 +1,4 @@
-class AFNE:
+class AFNe:
   '''
     @param set    alphabet
     @param set    states
@@ -14,7 +14,10 @@ class AFNE:
     self.initial_state = initial_state
     self.finals_states = finals_states
     
-    
+  
+  def __str__(self):
+    return "alphabet: "+str(self.alphabet)+"\n"+"states: "+str(self.states)+"\n"+"transition_function: "+str(self.transition_function)+"\n"+"initial_state: "+str(self.initial_state)+"\n"+"finals_states: "+str(self.finals_states)
+  
   def startDelta(self, states, word ):
     if word == None:
       final = set()
