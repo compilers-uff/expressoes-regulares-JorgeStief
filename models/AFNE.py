@@ -7,16 +7,16 @@ class AFNe:
     @param set    finals_states
   '''
   
-  def __init__(self, alphabet, states, transition_function, initial_state, finals_states):
+  def __init__(self, alphabet, states, program_function, initial_state, finals_states):
     self.alphabet = alphabet
     self.states = states
-    self.transition_function = transition_function
+    self.program_function = program_function
     self.initial_state = initial_state
     self.finals_states = finals_states
     
   
   def __str__(self):
-    return "alphabet: "+str(self.alphabet)+"\n"+"states: "+str(self.states)+"\n"+"transition_function: "+str(self.transition_function)+"\n"+"initial_state: "+str(self.initial_state)+"\n"+"finals_states: "+str(self.finals_states)
+    return "alphabet: "+str(self.alphabet)+"\n"+"states: "+str(self.states)+"\n"+"transition_function: "+str(self.program_function)+"\n"+"initial_state: "+str(self.initial_state)+"\n"+"finals_states: "+str(self.finals_states)
   
   def startDelta(self, states, word ):
     if word == None:
@@ -38,8 +38,8 @@ class AFNe:
       aux_state = initial_array[0]
       final.add(aux_state)
       
-      if aux_state in  self.transition_function:
-        achievable_states = self.transition_function[aux_state]
+      if aux_state in  self.program_function:
+        achievable_states = self.program_function[aux_state]
         
         for achievable_state in  achievable_states:
           if achievable_state[0] == None:
