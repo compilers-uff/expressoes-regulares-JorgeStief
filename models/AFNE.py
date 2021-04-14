@@ -4,10 +4,6 @@ class AFNe(Automato):
   
   def __init__(self, sigma, states, program_function, initial_state, finals_states):
     super().__init__(sigma, states, program_function, initial_state, finals_states)
-    
-  
-  def __str__(self):
-    return "sigma: "+str(self.sigma)+"\n"+"states: "+str(self.states)+"\n"+"transition_function: "+str(self.program_function)+"\n"+"initial_state: "+str(self.initial_state)+"\n"+"finals_states: "+str(self.finals_states)
   
   def startDelta(self, states, word ):
     if word == None:
