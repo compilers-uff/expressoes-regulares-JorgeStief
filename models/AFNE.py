@@ -27,11 +27,37 @@ class AFNe:
 
       return final
     
+    aux = None
+    aux2 = None
+
+    if(word[:-1] != ''):
+      aux = word[:-1] #n primeiros caracteres excluindo o ultimo
+
+    aux2 = word[-1] #ultimo caracter
+
+    a = self.startDelta(states, aux)
+    b = set()
+
+    for s in a:
+      if s in self.program_function:
+        possibilidades = self.program_function[s]
+        for p in possibilidades:
+          if p[0] == aux2:
+            b = b.union(p[1])
+            
+    
+    final = set()
+
+    for t in b:
+      final = final.union(self.emptyLock(t))
+
+    return final
+    
   def emptyLock(self, state):
     
     final = set()
       
-    final_array = []
+    final_array = set()
     initial_array = [state]
     
     while(len(initial_array) > 0):
@@ -51,4 +77,5 @@ class AFNe:
                 if p not in final_array:
                   initial_array.append(p)
       initial_array.remove(aux_state)
-      final_array.add(aux_state)            
+      final_array.add(aux_state)
+    return final             
