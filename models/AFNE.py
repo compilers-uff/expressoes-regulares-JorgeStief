@@ -1,22 +1,13 @@
-class AFNe:
-  '''
-    @param set    alphabet
-    @param set    states
-    @param dict   transition_function Exemplo: {'q0': [('a', {'q1'}), ('b', {'q2'})]}.
-    @param string initial_state
-    @param set    finals_states
-  '''
+from models.Automato import *
+class AFNe(Automato):
   
-  def __init__(self, alphabet, states, program_function, initial_state, finals_states):
-    self.alphabet = alphabet
-    self.states = states
-    self.program_function = program_function
-    self.initial_state = initial_state
-    self.finals_states = finals_states
+  
+  def __init__(self, sigma, states, program_function, initial_state, finals_states):
+    super().__init__(sigma, states, program_function, initial_state, finals_states)
     
   
   def __str__(self):
-    return "alphabet: "+str(self.alphabet)+"\n"+"states: "+str(self.states)+"\n"+"transition_function: "+str(self.program_function)+"\n"+"initial_state: "+str(self.initial_state)+"\n"+"finals_states: "+str(self.finals_states)
+    return "sigma: "+str(self.sigma)+"\n"+"states: "+str(self.states)+"\n"+"transition_function: "+str(self.program_function)+"\n"+"initial_state: "+str(self.initial_state)+"\n"+"finals_states: "+str(self.finals_states)
   
   def startDelta(self, states, word ):
     if word == None:

@@ -1,10 +1,6 @@
 from models.AFNE import *
 from models.AFN import *
 
-
-
-
-
 def create_afne(term):
   
     program_function = {'q0': [(term, {'q1'})] }
@@ -30,6 +26,6 @@ def update_afne_states(value, afne):
         
   finals_states = afne.finals_states
   finals_states = set(map(lambda elem: elem+value, finals_states))   
-  return AFNe(afne.alphabet, states, program_function, initial_state, finals_states)
+  return AFNe(afne.sigma, states, program_function, initial_state, finals_states)
 
 

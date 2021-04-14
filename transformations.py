@@ -32,7 +32,7 @@ def erToAFNe(regular_expression):
       
       second_term = None
       new_second_term = None
-      alphabet = None
+      sigma = None
       
       if(char != "*"):
         second_term = aux.pop()
@@ -41,9 +41,9 @@ def erToAFNe(regular_expression):
           second_term = create_afne(second_term)
         
         new_second_term  = update_afne_states('2',second_term) 
-        alphabet = new_first_term.alphabet.union(new_second_term.alphabet)
+        sigma = new_first_term.sigma.union(new_second_term.sigma)
       else:
-        alphabet = new_first_term.alphabet.copy()
+        sigma = new_first_term.sigma.copy()
         
       
       if(char == '+'):
@@ -62,7 +62,7 @@ def erToAFNe(regular_expression):
         initial_state = 'q0'
         finals_states = {'qf'}
 
-        result_afne = AFNe(alphabet, states, program_function, initial_state, finals_states)
+        result_afne = AFNe(sigma, states, program_function, initial_state, finals_states)
 
         aux.append(result_afne) 
         
@@ -77,7 +77,7 @@ def erToAFNe(regular_expression):
 
 def afneToAFN(afne):
   
-    alphabet = afne.alphabet.copy()
+    sigma = afne.sigma.copy()
     states = afne.states.copy()
     program_function = {}
     initial_state = afne.initial_state
@@ -90,7 +90,7 @@ def afneToAFN(afne):
         if not reached_states.isdisjoint(afne.finals_states):
             finals_states.add(state)
 
-        for char in alphabet:
+        for char in sigma:
             result = afne.startDelta({state}, char)
             if len(result) != 0:
                 if state in program_function:
@@ -98,6 +98,6 @@ def afneToAFN(afne):
                 else:
                     program_function[state] = [(char, result)]
 
-    afn = AFN(alphabet, states, program_function, initial_state, finals_states)
+    afn = AFN(sigma, states, program_function, initial_state, finals_states)
 
     return afn
