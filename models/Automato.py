@@ -10,4 +10,6 @@ class Automato():
     
     def __str__(self):
         return "Sigma: "+str(self.sigma)+"\n"+"estados: "+str(self.states)+"\n"+"func_programa: "+str(self.program_function)+"\n"+"estado_inicial: "+str(self.initial_state)+"\n"+"estados_finais: "+str(self.finals_states)
+    
+    
    

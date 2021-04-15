@@ -9,11 +9,11 @@ class AFN(Automato):
                     raise ValueError("AFN nao suporta indeterminismo")
 
         super().__init__(sigma, states, program_function, initial_state, finals_states)
-
+        
     
 
     
-    def startDelta(self, states, word):
+    def starDelta(self, states, word):
         
         if word == None or word == '':
             return states
@@ -42,7 +42,7 @@ class AFN(Automato):
         if len(result) == 0:
             return result
         
-        return self.startDelta(result, word)    
+        return self.starDelta(result, aux2)    
 
         
 

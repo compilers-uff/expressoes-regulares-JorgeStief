@@ -5,7 +5,8 @@ class AFNe(Automato):
   def __init__(self, sigma, states, program_function, initial_state, finals_states):
     super().__init__(sigma, states, program_function, initial_state, finals_states)
   
-  def startDelta(self, states, word ):
+    
+  def starDelta(self, states, word ):
     if word == None:
       final = set()
 
@@ -18,11 +19,11 @@ class AFNe(Automato):
     aux2 = None
 
     if(word[:-1] != ''):
-      aux = word[:-1] #n primeiros caracteres excluindo o ultimo
+      aux = word[:-1] 
 
-    aux2 = word[-1] #ultimo caracter
+    aux2 = word[-1] 
 
-    a = self.startDelta(states, aux)
+    a = self.starDelta(states, aux)
     b = set()
 
     for s in a:
