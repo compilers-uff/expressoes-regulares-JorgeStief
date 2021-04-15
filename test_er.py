@@ -1,84 +1,71 @@
 import pytest
 import er
 
-def test_0():
+def test0():
     assert er.match("a", "a") == True
 
-def test_1():
+def test1():
     assert er.match("+(a, b)", "a") == True
 
-def test_2():
+def test2():
     assert er.match(".(a, b)", "a") == False
 
-def test_3():
+def test3():
     assert er.match(".(a, b)", "ab") == True
     
-def test_4():    
+def test4():    
     assert er.match("*(+(a, b))", "a") == True
     
-def test_5():    
+def test5():    
     assert er.match("*(+(a, b))", "aaa") == True
     
-def test_6():    
+def test6():    
     assert er.match("*(+(a, b))", "ab") == True
     
-def test_7():    
+def test7():    
     assert er.match("*(+(a, b))", "aba") == True
     
-def test_8():    
+def test8():    
     assert er.match("*(+(a, b))", "abababa") == True
 
-def test_10():
-    # (a+b)*abba(a+b)*
-    # palavras que tenham como substring abba
+def test9():
+  assert er.match('.(*(+(a,b)), *(+(+(a,b),c)))', 'ababababbabacababacbacb') == True
+  
+def test10():
     assert er.match(".(.(*(+(a,b)), .(a,.(b,.(b,a)))), *(+(a,b)))", "baabbaba") == True
 
-def test_11():
-    # (a+b)*abba(a+b)*
-    # palavras que tenham como substring abba
+def test11():
     assert er.match(".(.(*(+(a,b)), .(a,.(b,.(b,a)))), *(+(a,b)))", "ababa") == False
 
-def test_12():
-    #0(0+1)*1
-    # palavras que comecam com 0 e terminam com 1
+def test12():
     assert er.match(".(.(0,*(+(0,1))),1)", "0001010") == False
 
-def test_13():
-    #0(0+1)*1
-    # palavras que comecam com 0 e terminam com 1
+def test13():
     assert er.match(".(.(0,*(+(0,1))),1)", "00010101") == True
 
-def test_14():
-    # 1*(01*01*)*
-    # palavras com numero par de zeros
+def test14():
     assert er.match(".(*(1), *(.(.(0,*(1)), .(0,*(1)))))", "1100") == True
 
-def test_15():
-    # 1*(01*01*)*
-    # palavras com numero par de zeros
+def test15():
     assert er.match(".(*(1), *(.(.(0,*(1)), .(0,*(1)))))", "110010") == False
 
-def test_16():
-    # (1+01)*(e+0)
-    # palavras sem dois zeros consecutivos
+def test16():
     assert er.match(".(*(+(1, .(0,1))), +(e,0))", "11101010110") == True
 
-def test_17():
-    # (1+01)*(e+0)
-    # palavras sem dois zeros consecutivos
+def test17():
     assert er.match(".(*(+(1, .(0,1))), +(e,0))", "111010100110") == False
 
-def test_18():
-    # (a + ε)(b + ba)*
-    # palavras que nao possuem dois a consecutivos
+def test18():
     assert er.match(".(+(a, e), *(+(b, .(b,a))))", "abbababababb") == True
 
-def test_19():
-    # (a + ε)(b + ba)*
-    # palavras que nao possuem dois a consecutivos
+def test19():
     assert er.match(".(+(a, e), *(+(b, .(b,a))))", "abbaababababb") == False
 
-def test_20():
-    # (a + ε)
-    # palavras vazias ou com um a
-    assert er.match("+(a, e)", "") == True
+def test20():
+    assert er.match('*(.(.(a,b),c))', 'abc') == True
+    
+def test21():
+    assert er.match('+(+(+(+(a,b),c),d),e)', '') == False  
+
+def test22():
+    assert er.match('.(.(+(a,b),+(c,d)), .(+(a,b),+(c,d)))', 'abcbd')    == False   
