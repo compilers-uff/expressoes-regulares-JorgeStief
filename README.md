@@ -29,9 +29,9 @@ Implemente em Python 3 um _matcher_ de expressões regulares. Dada uma expressã
     
 1. Transformador de AFD para AFD mínimo.
 
-   A função `afdToAFDmin : AFD -> AFD` deve receber um AFD como descrito acima e retornar o AFD mínimo associado utilizado o algoritmo de minimização descrito no livro-texto.
+   A função `afdToAFDmin : AFD -> AFDMin` deve receber um AFD como descrito acima e retornar o AFD mínimo associado utilizado o algoritmo de minimização descrito no livro-texto.
    
-1. Simiulador de AFD.
+1. Simulador de AFD.
 
    Seja `A = (Sigma, Q, delta, q0, F)` um AFD.  A expressão Booleana `A.delta*(q0, w) in A.F`, em Python 3, é verdadeira quando `w` é aceita por `A` e falsa casa contrário. O predicado `A.accepted(w)` é verdadeiro quando `w` é aceita por `A`.
    
